@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\PointNotFoundException;
 use App\Http\Requests\AllPointsRequest;
 use App\Http\Requests\CreateInterestPointRequest;
 use App\Http\Requests\NearestPointsRequest;
@@ -29,10 +30,11 @@ class InterestPointController extends Controller
 
     /**
      * Get all interest points in given area of user's location
-     * @see Onboarding::index()//todo swagger
+     * @see \App\Http\Swagger\InterestPointController::nearestPoints()
      * @param Request $request (ip and radius)
      * @return \Illuminate\Http\JsonResponse
      */
+
     public function nearestPoints(NearestPointsRequest $request)
     {
         $ip = $request->ip;
@@ -45,7 +47,7 @@ class InterestPointController extends Controller
 
     /**
      * Get all interest points in user's location city
-     * @see Onboarding::index()//todo swagger
+     * @see \App\Http\Swagger\InterestPointController::getAllUsersPoints()
      * @param Request $request (limit, skip, city)
      * @return \Illuminate\Http\JsonResponse
      */
@@ -62,7 +64,7 @@ class InterestPointController extends Controller
 
     /**
      * Create new interest point
-     * @see Onboarding::index()//todo swagger
+     * @see \App\Http\Swagger\InterestPointController::create()
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -82,7 +84,7 @@ class InterestPointController extends Controller
 
     /**
      * Update interest point by id
-     * @see Onboarding::index()//todo swagger
+     * @see \App\Http\Swagger\InterestPointController::update()
      * @param Request $request (limit, skip, city)
      * @return \Illuminate\Http\JsonResponse
      */
@@ -90,6 +92,10 @@ class InterestPointController extends Controller
     public function update($id, UpdateInterestPointRequest $request)
     {
         $point = InterestPoint::find($id);
+
+        if(!$point)
+            throw new PointNotFoundException();
+
         $point->update([
             'title' => $request->title,
             'description' => $request->description,

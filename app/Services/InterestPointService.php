@@ -2,6 +2,7 @@
 namespace App\Services;
 
 use App\Constants\DefaultCity;
+use App\Exceptions\CityNotFoundException;
 use App\Models\City;
 use App\Models\InterestPoint;
 use App\Models\IP;
@@ -78,6 +79,9 @@ class InterestPointService
                 $city = $location->city;
                 $lat = $location->lat;
                 $lon = $location->lon;
+
+                if(!City::where('en_name',$location->city)->first())
+                    throw new CityNotFoundException();
 
                 IP::create([
                     'ip' => $ip,
