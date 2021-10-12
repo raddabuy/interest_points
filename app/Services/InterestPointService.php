@@ -28,9 +28,16 @@ class InterestPointService
     {
         $userLocation = $this->getLocation($ip);
 
+        $lat = $userLocation['lat'];
+        $lon = $userLocation['lon'];
+
         $points = InterestPoint::whereHas('city', function ($query) use($userLocation) {
             return $query->where('en_name', $userLocation['city']);
-        })->get();
+        })
+            ->whereRaw("abs($lon-longitude)/abs($lat-latitude) <= $radius")
+            ->get();
+
+
 
         $resource = $this->fractal->collection($points, $this->interestPointsTransformer);
 

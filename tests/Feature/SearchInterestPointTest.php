@@ -30,7 +30,6 @@ class SearchInterestPointTest extends TestCase
                 'skip'=> 0
             ]);
 
-
         $response->assertStatus(200);
 
     }
