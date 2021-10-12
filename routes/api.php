@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('nearest','App\Http\Controllers\InterestPointController@nearestPoints');
 Route::get('all_points','App\Http\Controllers\InterestPointController@getAllUsersPoints');
+Route::post('create','App\Http\Controllers\InterestPointController@create');
+Route::put('update/{point_id}','App\Http\Controllers\InterestPointController@update');
