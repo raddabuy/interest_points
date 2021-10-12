@@ -5,14 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class InterestPoint extends Model
+class IP extends Model
 {
     use HasFactory;
 
-    protected $table = 'interest_points';
+    protected $table = 'ip';
+
     public $timestamps = false;
 
-    protected $fillable = ['title', 'description', 'latitude', 'longitude','city_id'];
+    protected $fillable = ['ip', 'city_id','latitude', 'longitude'];
 
     public function city()
     {

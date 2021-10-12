@@ -28,7 +28,7 @@ class CitySeeder extends Seeder
                 ],
                 [
                     'name' => 'Екатеринбург',
-                    'en_name' => 'Ekaterinburg',
+                    'en_name' => 'Yekaterinburg',
                     'code' => 'SVE',
                 ],
             ],

@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('nearest','App\Http\Controllers\InterestPointController@nearestPoints');
+Route::get('all_points','App\Http\Controllers\InterestPointController@getAllUsersPoints');
