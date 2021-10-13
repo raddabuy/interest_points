@@ -105,13 +105,13 @@ abstract class InterestPointController
      *     tags={"Interest point"},
      *     @OA\Parameter(
      *         name="radius",
-     *         in="query",
+     *         in="path",
      *         description="Area radius",
      *         required=true,
      *     ),
      *     @OA\Parameter(
      *         name="ip",
-     *         in="query",
+     *         in="path",
      *         description="User's IP",
      *     ),
      *     @OA\Response(
