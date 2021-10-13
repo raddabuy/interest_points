@@ -37,8 +37,8 @@ class InterestPointController extends Controller
 
     public function nearestPoints(NearestPointsRequest $request)
     {
-        $ip = $request->ip;
-        $radius = $request->radius;
+        $ip = $request->get('ip');
+        $radius = $request->get('radius');
 
         $points = app(InterestPointService::class)->getNearestPoints($ip, $radius);
 
@@ -53,9 +53,9 @@ class InterestPointController extends Controller
      */
     public function getAllUsersPoints(AllPointsRequest $request)
     {
-        $limit = $request->limit;
-        $skip = $request->skip;
-        $city = $request->city;
+        $limit = $request->get('limit');
+        $skip = $request->get('skip');
+        $city = $request->get('city');
 
         $points = app(InterestPointService::class)->getAllUsersPoints($limit, $skip,$city);
 
